@@ -1,0 +1,13 @@
+.card-container {
+    border-radius: 20px;
+    background-color: aliceblue;
+    height: 50vh;
+    width: 15vw;
+    padding: 1rem;
+    box-shadow: 0 0 10px 5px rgba(0,0,0,0.1);
+}
+
+.card-container td {
+    text-align: left;
+    padding: 0.2rem 1rem;
+}
