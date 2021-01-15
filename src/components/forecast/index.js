@@ -4,6 +4,7 @@ import axios from 'axios';
 import { convertKToC, convertKToF } from '../../services/tempConvert.js';
 import './style.css';
 
+const apiKey = process.env.REACT_APP_OPENWEATHER_API_KEY;
 const zipCode = '10001'
 const today = new Date();
 const dayOfWeek = ['Saturday', 'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday']
@@ -44,7 +45,6 @@ export default class Forecast extends Component {
         const response = await axios.get('https://api.openweathermap.org/data/2.5/forecast', {
             params: params
         })
-        // const response = await axios.get('./tempData.json')
         const data = response.data;
         let weatherByDate = new Map();
         let nextDays = this.getNextDays();
@@ -86,7 +86,6 @@ export default class Forecast extends Component {
         let weatherCard = [];
         let temp, feels_like, day;
         let todayWeather = this.state.weatherData.has(today.getDate()) ? this.state.weatherData.get(today.getDate())[0] : { main: { temp: 0 } };
-        let id = 0;
         let unit = this.state.isC ? 'C' : 'F';
         this.state.weatherData.forEach((i, j) => {
             var date = new Date();
@@ -98,7 +97,6 @@ export default class Forecast extends Component {
                     <WeatherCard weatherData={i} isC={this.state.isC} day={day} />
                 </li>
             )
-            id++;
         })
         if (this.state.isC) {
             temp = convertKToC(todayWeather.main.temp);
